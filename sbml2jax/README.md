@@ -44,9 +44,9 @@ import jax.numpy as jnp
 from sbml2jax.model import JaxModel, Segment
 
 model = JaxModel.from_sbml(Path("examples/models/apixaban_body_flat.xml"))
-ts = jnp.linspace(0.0, 24 * 60.0, 241)                      # min
+ts = jnp.linspace(0.0, 24 * 60.0, 241)  # min
 dose = [Segment(end=24 * 60.0, changes={"PODOSE_api": 10.0})]  # 10 mg oral
-ys = model.simulate(ts, dose)                                # (time, OUTPUTS)
+ys = model.simulate(ts, dose)  # (time, OUTPUTS)
 cve = ys[:, model.module.OUTPUTS.index("Cve_api")]
 
 # gradient of the mean plasma concentration w.r.t. all inputs of the model
