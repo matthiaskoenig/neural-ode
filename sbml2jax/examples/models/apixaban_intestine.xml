@@ -1,0 +1,1182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version2/core" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" xmlns:distrib="http://www.sbml.org/sbml/level3/version1/distrib/version1" level="3" version="2" comp:required="true" distrib:required="true">
+  <notes>
+    <body xmlns="http://www.w3.org/1999/xhtml">
+      <p>Created with <a href="https://github.com/matthiaskoenig/sbmlutils">https://github.com/matthiaskoenig/sbmlutils</a>.
+<a href="https://doi.org/10.5281/zenodo.5525390">
+        <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.5525390.svg" alt="DOI"/></a></p>
+      </body>
+    </notes>
+  <model metaid="meta_apixaban_intestine" id="apixaban_intestine" name="Model for apixaban absorption and intestinal secretion" substanceUnits="mmole" timeUnits="min" volumeUnits="litre" areaUnits="m2" lengthUnits="metre" extentUnits="mmole">
+    <notes>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+        <h1>Model for apixaban absorption and intestinal secretion</h1>
+        <p>The tablet dissolves with a rate which saturates with the dose
+(<code>PODOSE_50</code>), the solution reaches the lumen of the small intestine with
+<code>Ka_sol_api</code>. The dissolved apixaban is absorbed with first order kinetics
+(<code>APIABS_k</code>) in competition with the small intestinal transit into the
+colon (<code>SITRANS_k</code>), which also carries the undissolved tablet, the
+apixaban secreted from the plasma into the small intestine (P-gp/BCRP,
+<code>APISEC_k</code>, <code>f_pgp</code>) and the metabolites secreted with the bile. Nothing is
+absorbed from the colon, its content is excreted with the fecal transit
+(<code>LUMEX_k</code>).</p>
+        <p>The content of this model has been carefully created in a manual research effort.</p>
+        <h2>Terms of use</h2>
+        <p>Copyright © 2026 <a href="https://livermetabolism.com" title="Matthias König" target="_blank">Matthias König</a>.</p>
+        <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+          <img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png"/>
+        </a>
+        <br/>This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+<p>Redistribution and use of any part of this model, with or without modification, are permitted provided
+that the following conditions are met:</p>
+        <ul>
+          <li>Redistributions of this SBML file must retain the above copyright notice, this list of conditions and the following disclaimer.</li>
+          <li>Redistributions in a different form must reproduce the above copyright notice, this list of conditions
+and the following disclaimer in the documentation and/or other materials provided
+with the distribution.</li>
+        </ul>
+        <p>This model is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></body>
+      </notes>
+    <annotation>
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+        <rdf:Description rdf:about="#meta_apixaban_intestine">
+          <dcterms:creator>
+            <rdf:Bag>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>Myshkina</vCard4:family-name>
+                  <vCard4:given-name>Mariia</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>mariia.myshkina@hu-berlin.de</vCard4:hasEmail>
+                <vCard4:organization-name>Humboldt-Universität zu Berlin, Institute for Theoretical Biology</vCard4:organization-name>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>Babaeva</vCard4:family-name>
+                  <vCard4:given-name>Mariia</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>mariia.babaeva@charite.de</vCard4:hasEmail>
+                <vCard4:organization-name>Charité University Medicine Berlin, Master Molecular Medicine</vCard4:organization-name>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>Chang</vCard4:family-name>
+                  <vCard4:given-name>Linh</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>changlin@student.hu-berlin.de</vCard4:hasEmail>
+                <vCard4:organization-name>Humboldt-Universität zu Berlin</vCard4:organization-name>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>Metternich</vCard4:family-name>
+                  <vCard4:given-name>Johannes</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>metternich@campus.tu-berlin.de</vCard4:hasEmail>
+                <vCard4:organization-name>Technische Universität Berlin</vCard4:organization-name>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>Badon</vCard4:family-name>
+                  <vCard4:given-name>Shelee</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>sheleepab97@zedat.fu-berlin.de</vCard4:hasEmail>
+                <vCard4:organization-name>Freie Universität Berlin</vCard4:organization-name>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>Elias</vCard4:family-name>
+                  <vCard4:given-name>Michelle</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>michelleelias66@gmail.com</vCard4:hasEmail>
+                <vCard4:organization-name>Humboldt-University Berlin, Institute for Biology</vCard4:organization-name>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>König</vCard4:family-name>
+                  <vCard4:given-name>Matthias</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>koenigmx@hu-berlin.de</vCard4:hasEmail>
+                <vCard4:organization-name>Humboldt-University Berlin, Faculty of Life Science, Institute for Biology, Biology, Berlin; University Lübeck; University Hospital Schleswig-Holstein, Campus Lübeck, First Department of Medicine, Germany</vCard4:organization-name>
+              </rdf:li>
+            </rdf:Bag>
+          </dcterms:creator>
+          <dcterms:created rdf:parseType="Resource">
+            <dcterms:W3CDTF>2026-10-24T14:26:00Z</dcterms:W3CDTF>
+          </dcterms:created>
+          <dcterms:modified rdf:parseType="Resource">
+            <dcterms:W3CDTF>2026-10-24T14:26:00Z</dcterms:W3CDTF>
+          </dcterms:modified>
+          <bqbiol:hasTaxon>
+            <rdf:Bag>
+              <rdf:li rdf:resource="https://identifiers.org/taxonomy:9606"/>
+              <rdf:li rdf:resource="https://identifiers.org/snomedct:337915000"/>
+            </rdf:Bag>
+          </bqbiol:hasTaxon>
+          <bqbiol:hasProperty>
+            <rdf:Bag>
+              <rdf:li rdf:resource="https://identifiers.org/mamo:MAMO_0000046"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C61308"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C180619"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C15299"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C15720"/>
+              <rdf:li rdf:resource="https://identifiers.org/GO:0007596"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C79369"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C79372"/>
+            </rdf:Bag>
+          </bqbiol:hasProperty>
+          <bqbiol:isDescribedBy>
+            <rdf:Bag>
+              <rdf:li rdf:resource="https://identifiers.org/doi:10.5281/zenodo.18877904"/>
+            </rdf:Bag>
+          </bqbiol:isDescribedBy>
+          <bqbiol:occursIn>
+            <rdf:Bag>
+              <rdf:li rdf:resource="https://identifiers.org/BTO:0000545"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C12736"/>
+              <rdf:li rdf:resource="https://identifiers.org/FMA:7199"/>
+              <rdf:li rdf:resource="https://identifiers.org/BTO:0000648"/>
+            </rdf:Bag>
+          </bqbiol:occursIn>
+        </rdf:Description>
+      </rdf:RDF>
+    </annotation>
+    <listOfUnitDefinitions>
+      <unitDefinition id="g_per_mole" name="g/mole">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="mole" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="l_per_min" name="l/min">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="m2" name="meter^2">
+        <listOfUnits>
+          <unit kind="metre" exponent="2" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mM" name="mmole/liter">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mg" name="mg">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mg_per_min" name="mg/min">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mg_per_s_l" name="mg/s/l">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="1"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="min" name="min">
+        <listOfUnits>
+          <unit kind="second" exponent="1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="min_per_hr" name="min/hour">
+        <listOfUnits>
+          <unit kind="second" exponent="1" scale="0" multiplier="60"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="3600"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole" name="mmole">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole_per_min" name="mmole/min">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole_per_min_l" name="mmole/min/l">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="per_hr" name="1/hr">
+        <listOfUnits>
+          <unit kind="second" exponent="-1" scale="0" multiplier="3600"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="per_min" name="1/min">
+        <listOfUnits>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="per_mmole" name="1/mmole">
+        <listOfUnits>
+          <unit kind="mole" exponent="-1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment metaid="meta_Vext" sboTerm="SBO:0000290" id="Vext" name="plasma" size="1" units="litre" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vext">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C13356"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vlumen" sboTerm="SBO:0000290" id="Vlumen" name="lumen" size="1" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vlumen">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:14586"/>
+                  <rdf:li rdf:resource="https://identifiers.org/UBERON:0018543"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vfeces" sboTerm="SBO:0000290" id="Vfeces" name="feces" size="1" units="litre" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vfeces">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:64183"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C13234"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000440"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vcolon" sboTerm="SBO:0000290" id="Vcolon" name="colon lumen" size="1" units="litre" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vcolon">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:14543"/>
+                  <rdf:li rdf:resource="https://identifiers.org/UBERON:0001155"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vstomach" sboTerm="SBO:0000290" id="Vstomach" name="stomach" size="1" units="litre" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vstomach">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7148"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C12391"/>
+                  <rdf:li rdf:resource="https://identifiers.org/UBERON:0000945"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0001307"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vapical" sboTerm="SBO:0000290" id="Vapical" name="apical membrane (intestinal membrane enterocytes)" spatialDimensions="2" size="NaN" units="m2" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vapical">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:84666"/>
+                  <rdf:li rdf:resource="https://identifiers.org/GO:0016324"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species metaid="meta_api_stomach" sboTerm="SBO:0000247" id="api_stomach" name="apixaban (api_stomach)" compartment="Vstomach" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="true" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_api_stomach">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:10182969"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:QNZCBYKSOIHPEH-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:72296"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C61308"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:698090000"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_api_ext" sboTerm="SBO:0000247" id="api_ext" name="apixaban (api_ext)" compartment="Vext" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_api_ext">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:10182969"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:QNZCBYKSOIHPEH-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:72296"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C61308"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:698090000"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_api_lumen" sboTerm="SBO:0000247" id="api_lumen" name="apixaban (api_lumen)" compartment="Vlumen" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_api_lumen">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:10182969"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:QNZCBYKSOIHPEH-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:72296"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C61308"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:698090000"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_api_feces" sboTerm="SBO:0000247" id="api_feces" name="apixaban (api_feces)" compartment="Vfeces" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_api_feces">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:10182969"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:QNZCBYKSOIHPEH-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:72296"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C61308"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:698090000"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_m1_lumen" sboTerm="SBO:0000247" id="m1_lumen" name="M1 (m1_lumen)" compartment="Vlumen" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_m1_lumen">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:91667715"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:HRIFVOGTDGFZKP-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:760768"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_m2_lumen" sboTerm="SBO:0000247" id="m2_lumen" name="M2 (m2_lumen)" compartment="Vlumen" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_m2_lumen">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:10203943"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:HGHLWAZFIGRAOT-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:760769"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_m7_lumen" sboTerm="SBO:0000247" id="m7_lumen" name="M7 (m7_lumen)" compartment="Vlumen" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_m7_lumen">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:10182969"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:72296"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_m1_feces" sboTerm="SBO:0000247" id="m1_feces" name="M1 (m1_feces)" compartment="Vfeces" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_m1_feces">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:91667715"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:HRIFVOGTDGFZKP-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:760768"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_m2_feces" sboTerm="SBO:0000247" id="m2_feces" name="M2 (m2_feces)" compartment="Vfeces" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_m2_feces">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:10203943"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:HGHLWAZFIGRAOT-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:760769"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_m7_feces" sboTerm="SBO:0000247" id="m7_feces" name="M7 (m7_feces)" compartment="Vfeces" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_m7_feces">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:10182969"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:72296"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_api_colon" sboTerm="SBO:0000247" id="api_colon" name="apixaban (api_colon)" compartment="Vcolon" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_api_colon">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:10182969"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:QNZCBYKSOIHPEH-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:72296"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C61308"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:698090000"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_m1_colon" sboTerm="SBO:0000247" id="m1_colon" name="M1 (m1_colon)" compartment="Vcolon" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_m1_colon">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:91667715"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:HRIFVOGTDGFZKP-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:760768"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_m2_colon" sboTerm="SBO:0000247" id="m2_colon" name="M2 (m2_colon)" compartment="Vcolon" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_m2_colon">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:10203943"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:HGHLWAZFIGRAOT-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:760769"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_m7_colon" sboTerm="SBO:0000247" id="m7_colon" name="M7 (m7_colon)" compartment="Vcolon" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_m7_colon">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:10182969"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:72296"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter sboTerm="SBO:0000002" id="fu_api" name="fraction unbound in plasma apixaban" value="0.131" units="dimensionless" constant="true"/>
+      <parameter sboTerm="SBO:0000009" id="APIABS_k" name="rate of apixaban absorption" value="0.0185164315331011" units="per_min" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>First order absorption of the dissolved apixaban in the lumen of the
+small intestine. The absorption competes with the small intestinal
+transit into the colon (<code>SITRANS_k</code>), the fraction absorbed is
+<code>F_api_abs = APIABS_k/(APIABS_k + SITRANS_k)</code>.</p>
+          </body>
+        </notes>
+        <distrib:listOfUncertainties>
+          <distrib:uncertainty distrib:name="fit PK_20261017_103232__85dfa">
+            <notes>
+              <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>The value of <code>GU__APIABS_k</code> is the result of the fit <code>PK_20261017_103232__85dfa</code>, its uncertainty is the profile likelihood of the fit.</p>
+                <p>| | |
+|---|---|
+| fit | <code>PK_20261017_103232__85dfa</code> |
+| record | <code>PK_20261017_103232__85dfa/</code> |
+| cost | 137.924 |
+| data points | 930 |
+| value | 0.0185164 1/(min) |
+| bounds | [0.0001, 1] |
+| scale | LOG10 |
+| method | profile likelihood |
+| identifiability | identifiable |
+| 95 % confidence interval | [0.0140465, 0.025583] |
+| Fisher confidence interval | [0.0156924, 0.0218487] |
+| distribution of the draws | <code>lognormal(-3.9890967501276218, 0.1529509838365684, 0.0001, 1.0)</code> |</p>
+              </body>
+            </notes>
+            <distrib:uncertSpan distrib:name="95 % confidence interval (profile likelihood)" distrib:units="per_min" distrib:type="confidenceInterval" distrib:valueLower="0.0140464892698482" distrib:valueUpper="0.0255830322746329"/>
+            <distrib:uncertParameter distrib:name="standard error (Fisher information)" distrib:value="0.00156132417259977" distrib:units="per_min" distrib:type="standardError"/>
+            <distrib:uncertParameter distrib:name="distribution of the draws" distrib:type="distribution">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/distrib/lognormal"> lognormal </csymbol>
+                  <apply>
+                    <minus/>
+                    <cn> 3.98909675012762 </cn>
+                  </apply>
+                  <cn> 0.152950983836568 </cn>
+                  <cn> 0.0001 </cn>
+                  <cn> 1 </cn>
+                </apply>
+              </math>
+            </distrib:uncertParameter>
+          </distrib:uncertainty>
+        </distrib:listOfUncertainties>
+      </parameter>
+      <parameter sboTerm="SBO:0000009" id="SITRANS_k" name="rate of the small intestinal transit" value="0.00735101034145177" units="per_min" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Transit of the content of the small intestine into the colon, a mean
+transit time of about 3.5 hr (1-8 hr). The transit carries the unabsorbed and the
+secreted apixaban, the undissolved tablet and the metabolites; nothing
+is absorbed from the colon.</p>
+          </body>
+        </notes>
+        <distrib:listOfUncertainties>
+          <distrib:uncertainty distrib:name="fit PK_20261017_103232__85dfa">
+            <notes>
+              <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>The value of <code>GU__SITRANS_k</code> is the result of the fit <code>PK_20261017_103232__85dfa</code>, its uncertainty is the profile likelihood of the fit.</p>
+                <p>| | |
+|---|---|
+| fit | <code>PK_20261017_103232__85dfa</code> |
+| record | <code>PK_20261017_103232__85dfa/</code> |
+| cost | 137.924 |
+| data points | 930 |
+| value | 0.00735101 1/(min) |
+| bounds | [0.00208333, 0.0166667] |
+| scale | LOG10 |
+| method | profile likelihood |
+| identifiability | identifiable |
+| 95 % confidence interval | [0.00606093, 0.00891201] |
+| Fisher confidence interval | [0.00660558, 0.00818056] |
+| distribution of the draws | <code>lognormal(-4.912917513782339, 0.09835275637894818, 0.0020833333333333333, 0.016666666666666666)</code> |</p>
+              </body>
+            </notes>
+            <distrib:uncertSpan distrib:name="95 % confidence interval (profile likelihood)" distrib:units="per_min" distrib:type="confidenceInterval" distrib:valueLower="0.00606093223663539" distrib:valueUpper="0.00891200588244985"/>
+            <distrib:uncertParameter distrib:name="standard error (Fisher information)" distrib:value="0.000400493839764278" distrib:units="per_min" distrib:type="standardError"/>
+            <distrib:uncertParameter distrib:name="distribution of the draws" distrib:type="distribution">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/distrib/lognormal"> lognormal </csymbol>
+                  <apply>
+                    <minus/>
+                    <cn> 4.91291751378234 </cn>
+                  </apply>
+                  <cn> 0.0983527563789482 </cn>
+                  <cn> 0.00208333333333333 </cn>
+                  <cn> 0.0166666666666667 </cn>
+                </apply>
+              </math>
+            </distrib:uncertParameter>
+          </distrib:uncertainty>
+        </distrib:listOfUncertainties>
+      </parameter>
+      <parameter sboTerm="SBO:0000009" id="LUMEX_k" name="rate of the fecal transit" value="0.000555555555555556" units="per_min" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Transit of the content of the colon into the feces, a mean transit time
+of about 30 hr (24-36 hr).</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000009" id="APISEC_k" name="intestinal secretion clearance of unbound apixaban" value="0.426931317033668" units="l_per_min" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Efflux of apixaban from the enterocytes into the lumen (P-gp, BCRP),
+a clearance of the unbound concentration in the plasma of the gut.
+Apixaban is eliminated unchanged into the gut (Frost2021, Wang2014:
+activated charcoal lowers the AUC). The clearance does not depend on
+the body weight.</p>
+          </body>
+        </notes>
+        <distrib:listOfUncertainties>
+          <distrib:uncertainty distrib:name="fit PK_20261017_103232__85dfa">
+            <notes>
+              <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>The value of <code>GU__APISEC_k</code> is the result of the fit <code>PK_20261017_103232__85dfa</code>, its uncertainty is the profile likelihood of the fit.</p>
+                <p>| | |
+|---|---|
+| fit | <code>PK_20261017_103232__85dfa</code> |
+| record | <code>PK_20261017_103232__85dfa/</code> |
+| cost | 137.924 |
+| data points | 930 |
+| value | 0.426931 l/(min) |
+| bounds | [0.001, 10] |
+| scale | LOG10 |
+| method | profile likelihood |
+| identifiability | identifiable |
+| 95 % confidence interval | [0.220204, 0.782789] |
+| Fisher confidence interval | [0.302643, 0.602262] |
+| distribution of the draws | <code>lognormal(-0.8511321287295144, 0.32355445787405207, 0.001, 10.0)</code> |</p>
+              </body>
+            </notes>
+            <distrib:uncertSpan distrib:name="95 % confidence interval (profile likelihood)" distrib:units="l_per_min" distrib:type="confidenceInterval" distrib:valueLower="0.220203577063187" distrib:valueUpper="0.782788572914654"/>
+            <distrib:uncertParameter distrib:name="standard error (Fisher information)" distrib:value="0.0748481568674169" distrib:units="l_per_min" distrib:type="standardError"/>
+            <distrib:uncertParameter distrib:name="distribution of the draws" distrib:type="distribution">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/distrib/lognormal"> lognormal </csymbol>
+                  <apply>
+                    <minus/>
+                    <cn> 0.851132128729514 </cn>
+                  </apply>
+                  <cn> 0.323554457874052 </cn>
+                  <cn> 0.001 </cn>
+                  <cn> 10 </cn>
+                </apply>
+              </math>
+            </distrib:uncertParameter>
+          </distrib:uncertainty>
+        </distrib:listOfUncertainties>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="f_pgp" name="P-gp/BCRP activity" value="1" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Activity of the intestinal efflux transporters (P-gp, BCRP) relative to
+normal: 1.0 normal, &lt;1.0 inhibition, &gt;1.0 induction; set by the
+experiments of the coadministrations, not fitted.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="PODOSE_api" name="oral dose apixaban in tablet [mg]" value="0" units="mg" constant="false"/>
+      <parameter sboTerm="SBO:0000002" id="SOLDOSE_api" name="oral dose apixaban in solution [mg]" value="0" units="mg" constant="false"/>
+      <parameter sboTerm="SBO:0000009" id="Ka_dis_api" name="Ka_dis [1/hr] dissolution apixaban in tablet" value="1.62989766741564" units="per_hr" constant="true">
+        <distrib:listOfUncertainties>
+          <distrib:uncertainty distrib:name="fit PK_20261017_103232__85dfa">
+            <notes>
+              <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>The value of <code>GU__Ka_dis_api</code> is the result of the fit <code>PK_20261017_103232__85dfa</code>, its uncertainty is the profile likelihood of the fit.</p>
+                <p>| | |
+|---|---|
+| fit | <code>PK_20261017_103232__85dfa</code> |
+| record | <code>PK_20261017_103232__85dfa/</code> |
+| cost | 137.924 |
+| data points | 930 |
+| value | 1.6299 1/(hr) |
+| bounds | [0.05, 10] |
+| scale | LOG10 |
+| method | profile likelihood |
+| identifiability | identifiable |
+| 95 % confidence interval | [1.18579, 2.5996] |
+| Fisher confidence interval | [1.31457, 2.02086] |
+| distribution of the draws | <code>lognormal(0.4885172321212785, 0.2002467632762508, 0.05, 10.0)</code> |</p>
+              </body>
+            </notes>
+            <distrib:uncertSpan distrib:name="95 % confidence interval (profile likelihood)" distrib:units="per_hr" distrib:type="confidenceInterval" distrib:valueLower="1.18578650559851" distrib:valueUpper="2.59960408988834"/>
+            <distrib:uncertParameter distrib:name="standard error (Fisher information)" distrib:value="0.178560468277966" distrib:units="per_hr" distrib:type="standardError"/>
+            <distrib:uncertParameter distrib:name="distribution of the draws" distrib:type="distribution">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/distrib/lognormal"> lognormal </csymbol>
+                  <cn> 0.488517232121279 </cn>
+                  <cn> 0.200246763276251 </cn>
+                  <cn> 0.05 </cn>
+                  <cn> 10 </cn>
+                </apply>
+              </math>
+            </distrib:uncertParameter>
+          </distrib:uncertainty>
+        </distrib:listOfUncertainties>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="PODOSE_50" name="undissolved dose of half-maximal dissolution [mg]" value="5.74095936453337" units="mg" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>The dissolution of the tablet saturates with the undissolved dose
+(solubility): the rate is <code>Ka_dis_api * PODOSE_api/(1 + PODOSE_api/PODOSE_50)</code>, linear for doses well below <code>PODOSE_50</code>.</p>
+          </body>
+        </notes>
+        <distrib:listOfUncertainties>
+          <distrib:uncertainty distrib:name="fit PK_20261017_103232__85dfa">
+            <notes>
+              <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>The value of <code>GU__PODOSE_50</code> is the result of the fit <code>PK_20261017_103232__85dfa</code>, its uncertainty is the profile likelihood of the fit.</p>
+                <p>| | |
+|---|---|
+| fit | <code>PK_20261017_103232__85dfa</code> |
+| record | <code>PK_20261017_103232__85dfa/</code> |
+| cost | 137.924 |
+| data points | 930 |
+| value | 5.74096 mg |
+| bounds | [1, 500] |
+| scale | LOG10 |
+| method | profile likelihood |
+| identifiability | identifiable |
+| 95 % confidence interval | [3.28333, 8.87179] |
+| Fisher confidence interval | [4.37017, 7.54172] |
+| distribution of the draws | <code>lognormal(1.7476263330439832, 0.2535803858063892, 1.0, 500.0)</code> |</p>
+              </body>
+            </notes>
+            <distrib:uncertSpan distrib:name="95 % confidence interval (profile likelihood)" distrib:units="mg" distrib:type="confidenceInterval" distrib:valueLower="3.28333400642602" distrib:valueUpper="8.87178679246102"/>
+            <distrib:uncertParameter distrib:name="standard error (Fisher information)" distrib:value="0.798075193142719" distrib:units="mg" distrib:type="standardError"/>
+            <distrib:uncertParameter distrib:name="distribution of the draws" distrib:type="distribution">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/distrib/lognormal"> lognormal </csymbol>
+                  <cn> 1.74762633304398 </cn>
+                  <cn> 0.253580385806389 </cn>
+                  <cn> 1 </cn>
+                  <cn> 500 </cn>
+                </apply>
+              </math>
+            </distrib:uncertParameter>
+          </distrib:uncertainty>
+        </distrib:listOfUncertainties>
+      </parameter>
+      <parameter sboTerm="SBO:0000009" id="Ka_sol_api" name="Ka_sol [1/hr] transport apixaban in solution" value="6.40581223519076" units="per_hr" constant="true">
+        <distrib:listOfUncertainties>
+          <distrib:uncertainty distrib:name="fit PK_20261017_103232__85dfa">
+            <notes>
+              <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>The value of <code>GU__Ka_sol_api</code> is the result of the fit <code>PK_20261017_103232__85dfa</code>, its uncertainty is the profile likelihood of the fit.</p>
+                <p>| | |
+|---|---|
+| fit | <code>PK_20261017_103232__85dfa</code> |
+| record | <code>PK_20261017_103232__85dfa/</code> |
+| cost | 137.924 |
+| data points | 930 |
+| value | 6.40581 1/(hr) |
+| bounds | [0.1, 20] |
+| scale | LOG10 |
+| method | profile likelihood |
+| identifiability | non_identifiable_upper |
+| 95 % confidence interval | [3.28304, 20] (open sides at the bounds) |
+| Fisher confidence interval | [3.67627, 11.162] |
+| distribution of the draws | <code>lognormal(1.8572057399848036, 0.34104527609595975, 0.1, 20.0)</code> |</p>
+              </body>
+            </notes>
+            <distrib:uncertSpan distrib:name="95 % confidence interval (profile likelihood)" distrib:units="per_hr" distrib:type="confidenceInterval" distrib:valueLower="3.28303822491296" distrib:valueUpper="20"/>
+            <distrib:uncertParameter distrib:name="standard error (Fisher information)" distrib:value="1.8125312459096" distrib:units="per_hr" distrib:type="standardError"/>
+            <distrib:uncertParameter distrib:name="distribution of the draws" distrib:type="distribution">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/distrib/lognormal"> lognormal </csymbol>
+                  <cn> 1.8572057399848 </cn>
+                  <cn> 0.34104527609596 </cn>
+                  <cn> 0.1 </cn>
+                  <cn> 20 </cn>
+                </apply>
+              </math>
+            </distrib:uncertParameter>
+          </distrib:uncertainty>
+        </distrib:listOfUncertainties>
+      </parameter>
+      <parameter sboTerm="SBO:0000647" id="Mr_api" name="Molecular weight apixaban [g/mole]" value="459.5" units="g_per_mole" constant="true"/>
+      <parameter id="F_api_abs" name="fraction absorbed apixaban" units="dimensionless" constant="false"/>
+    </listOfParameters>
+    <listOfRules>
+      <assignmentRule name="fraction absorbed apixaban" variable="F_api_abs">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Fraction of the dissolved apixaban in the small intestine which is
+absorbed, the rest leaves with the transit into the colon.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> APIABS_k </ci>
+            <apply>
+              <plus/>
+              <ci> APIABS_k </ci>
+              <ci> SITRANS_k </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <rateRule variable="PODOSE_api">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <minus/>
+              <apply>
+                <plus/>
+                <ci> APITAB </ci>
+                <ci> APIUNDIS </ci>
+              </apply>
+            </apply>
+            <ci> Mr_api </ci>
+          </apply>
+        </math>
+      </rateRule>
+      <rateRule variable="SOLDOSE_api">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <minus/>
+              <ci> APISOL </ci>
+            </apply>
+            <ci> Mr_api </ci>
+          </apply>
+        </math>
+      </rateRule>
+    </listOfRules>
+    <listOfReactions>
+      <reaction sboTerm="SBO:0000655" id="APIABS" name="absorption apixaban (APIABS)" reversible="false" compartment="Vapical">
+        <listOfReactants>
+          <speciesReference species="api_lumen" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="api_ext" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> APIABS_k </ci>
+              <ci> Vlumen </ci>
+              <ci> api_lumen </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="APISEC" name="intestinal secretion apixaban (APISEC)" reversible="false" compartment="Vapical">
+        <listOfReactants>
+          <speciesReference species="api_ext" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="api_lumen" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> f_pgp </ci>
+              <ci> APISEC_k </ci>
+              <ci> fu_api </ci>
+              <ci> api_ext </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="APISITR" name="small intestinal transit apixaban (APISITR)" reversible="false" compartment="Vlumen">
+        <listOfReactants>
+          <speciesReference species="api_lumen" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="api_colon" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> SITRANS_k </ci>
+              <ci> Vlumen </ci>
+              <ci> api_lumen </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="M1SITR" name="small intestinal transit M1 (M1SITR)" reversible="false" compartment="Vlumen">
+        <listOfReactants>
+          <speciesReference species="m1_lumen" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="m1_colon" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> SITRANS_k </ci>
+              <ci> Vlumen </ci>
+              <ci> m1_lumen </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="M2SITR" name="small intestinal transit M2 (M2SITR)" reversible="false" compartment="Vlumen">
+        <listOfReactants>
+          <speciesReference species="m2_lumen" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="m2_colon" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> SITRANS_k </ci>
+              <ci> Vlumen </ci>
+              <ci> m2_lumen </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="M7SITR" name="small intestinal transit M7 (M7SITR)" reversible="false" compartment="Vlumen">
+        <listOfReactants>
+          <speciesReference species="m7_lumen" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="m7_colon" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> SITRANS_k </ci>
+              <ci> Vlumen </ci>
+              <ci> m7_lumen </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="APIEXC" name="fecal excretion apixaban (APIEXC)" reversible="false" compartment="Vcolon">
+        <listOfReactants>
+          <speciesReference species="api_colon" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="api_feces" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> LUMEX_k </ci>
+              <ci> api_colon </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="M1EXC" name="fecal excretion M1 (M1EXC)" reversible="false" compartment="Vcolon">
+        <listOfReactants>
+          <speciesReference species="m1_colon" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="m1_feces" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> LUMEX_k </ci>
+              <ci> m1_colon </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="M2EXC" name="fecal excretion M2 (M2EXC)" reversible="false" compartment="Vcolon">
+        <listOfReactants>
+          <speciesReference species="m2_colon" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="m2_feces" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> LUMEX_k </ci>
+              <ci> m2_colon </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="M7EXC" name="fecal excretion M7 (M7EXC)" reversible="false" compartment="Vcolon">
+        <listOfReactants>
+          <speciesReference species="m7_colon" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="m7_feces" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> LUMEX_k </ci>
+              <ci> m7_colon </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="APITAB" name="tablet dissolution apixaban (APITAB)" reversible="false" compartment="Vlumen">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Swallowing, dissolution of the tablet and transport into the
+intestine. The dissolution saturates with the undissolved dose.</p>
+          </body>
+        </notes>
+        <listOfReactants>
+          <speciesReference species="api_stomach" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="api_lumen" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+            <apply>
+              <divide/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <apply>
+                    <divide/>
+                    <ci> Ka_dis_api </ci>
+                    <cn sbml:units="min_per_hr" type="integer"> 60 </cn>
+                  </apply>
+                  <ci> PODOSE_api </ci>
+                </apply>
+                <ci> Mr_api </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> PODOSE_api </ci>
+                  <ci> PODOSE_50 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="APIUNDIS" name="transit undissolved apixaban (APIUNDIS)" reversible="false" compartment="Vlumen">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>The undissolved apixaban of the tablet leaves the small
+intestine with the transit into the colon.</p>
+          </body>
+        </notes>
+        <listOfReactants>
+          <speciesReference species="api_stomach" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="api_colon" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> SITRANS_k </ci>
+                <ci> PODOSE_api </ci>
+              </apply>
+              <ci> Mr_api </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="APISOL" name="solution transport apixaban (APISOL)" reversible="false" compartment="Vlumen">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Swallowing of the solution and transport into the intestine.</p>
+          </body>
+        </notes>
+        <listOfReactants>
+          <speciesReference species="api_stomach" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="api_lumen" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <ci> Ka_sol_api </ci>
+                  <cn sbml:units="min_per_hr" type="integer"> 60 </cn>
+                </apply>
+                <ci> SOLDOSE_api </ci>
+              </apply>
+              <ci> Mr_api </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+    <comp:listOfPorts>
+      <comp:port metaid="fu_api_port" sboTerm="SBO:0000599" comp:idRef="fu_api" comp:id="fu_api_port" comp:name="Port of fu_api"/>
+      <comp:port metaid="f_pgp_port" sboTerm="SBO:0000599" comp:idRef="f_pgp" comp:id="f_pgp_port" comp:name="Port of f_pgp"/>
+      <comp:port metaid="PODOSE_api_port" sboTerm="SBO:0000599" comp:idRef="PODOSE_api" comp:id="PODOSE_api_port" comp:name="Port of PODOSE_api"/>
+      <comp:port metaid="SOLDOSE_api_port" sboTerm="SBO:0000599" comp:idRef="SOLDOSE_api" comp:id="SOLDOSE_api_port" comp:name="Port of SOLDOSE_api"/>
+      <comp:port metaid="Ka_dis_api_port" sboTerm="SBO:0000599" comp:idRef="Ka_dis_api" comp:id="Ka_dis_api_port" comp:name="Port of Ka_dis_api"/>
+      <comp:port metaid="Ka_sol_api_port" sboTerm="SBO:0000599" comp:idRef="Ka_sol_api" comp:id="Ka_sol_api_port" comp:name="Port of Ka_sol_api"/>
+      <comp:port metaid="Mr_api_port" sboTerm="SBO:0000599" comp:idRef="Mr_api" comp:id="Mr_api_port" comp:name="Port of Mr_api"/>
+      <comp:port metaid="Vext_port" sboTerm="SBO:0000599" comp:idRef="Vext" comp:id="Vext_port" comp:name="Port of Vext"/>
+      <comp:port metaid="Vlumen_port" sboTerm="SBO:0000599" comp:idRef="Vlumen" comp:id="Vlumen_port" comp:name="Port of Vlumen"/>
+      <comp:port metaid="Vfeces_port" sboTerm="SBO:0000599" comp:idRef="Vfeces" comp:id="Vfeces_port" comp:name="Port of Vfeces"/>
+      <comp:port metaid="Vstomach_port" sboTerm="SBO:0000599" comp:idRef="Vstomach" comp:id="Vstomach_port" comp:name="Port of Vstomach"/>
+      <comp:port metaid="api_ext_port" sboTerm="SBO:0000599" comp:idRef="api_ext" comp:id="api_ext_port" comp:name="Port of api_ext"/>
+      <comp:port metaid="api_lumen_port" sboTerm="SBO:0000599" comp:idRef="api_lumen" comp:id="api_lumen_port" comp:name="Port of api_lumen"/>
+      <comp:port metaid="api_feces_port" sboTerm="SBO:0000599" comp:idRef="api_feces" comp:id="api_feces_port" comp:name="Port of api_feces"/>
+      <comp:port metaid="m1_lumen_port" sboTerm="SBO:0000599" comp:idRef="m1_lumen" comp:id="m1_lumen_port" comp:name="Port of m1_lumen"/>
+      <comp:port metaid="m2_lumen_port" sboTerm="SBO:0000599" comp:idRef="m2_lumen" comp:id="m2_lumen_port" comp:name="Port of m2_lumen"/>
+      <comp:port metaid="m7_lumen_port" sboTerm="SBO:0000599" comp:idRef="m7_lumen" comp:id="m7_lumen_port" comp:name="Port of m7_lumen"/>
+      <comp:port metaid="m1_feces_port" sboTerm="SBO:0000599" comp:idRef="m1_feces" comp:id="m1_feces_port" comp:name="Port of m1_feces"/>
+      <comp:port metaid="m2_feces_port" sboTerm="SBO:0000599" comp:idRef="m2_feces" comp:id="m2_feces_port" comp:name="Port of m2_feces"/>
+      <comp:port metaid="m7_feces_port" sboTerm="SBO:0000599" comp:idRef="m7_feces" comp:id="m7_feces_port" comp:name="Port of m7_feces"/>
+    </comp:listOfPorts>
+  </model>
+</sbml>

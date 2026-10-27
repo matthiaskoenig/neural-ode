@@ -1,0 +1,19 @@
+line-length = 110
+target-version = "py311"
+extend-exclude = ["examples/results"]
+
+[lint]
+select = ["E", "F", "W", "I", "UP", "B", "D", "G", "RUF", "S", "BLE", "ARG"]
+ignore = [
+    "D105", "D107",  # magic methods and __init__ are documented by their class
+    "S101",          # asserts narrow types
+    "RUF001", "RUF002", "RUF003",  # unicode in text (ä, …)
+]
+
+[lint.pydocstyle]
+convention = "google"
+
+[lint.per-file-ignores]
+"tests/**" = ["D", "S"]
+"examples/**" = ["D", "T201"]
+"src/sbml2jax/testsuite/cli.py" = ["D"]
