@@ -1,0 +1,80 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sbml2jax"
+dynamic = ["version"]
+description = "sbml2jax generates differentiable JAX code for the ODE system of SBML models."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+	{name="Tom Oberländer"},
+]
+classifiers = [
+	"Development Status :: 2 - Pre-Alpha",
+	"Intended Audience :: Science/Research",
+	"Operating System :: OS Independent",
+	"Programming Language :: Python :: 3.11",
+	"Programming Language :: Python :: 3.12",
+	"Programming Language :: Python :: 3.13",
+	"Programming Language :: Python :: 3.14",
+	"Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+keywords = ["SBML", "JAX", "ODE", "PK/PD", "hybrid modelling", "UDE"]
+dependencies = [
+	# SBML reading, flattening and formula trees
+	"python-libsbml>=5.20.4",
+	# arrays, autodiff, compilation
+	"jax>=0.4.35",
+	# ODE solvers with gradients through the solve
+	"diffrax>=0.6.2",
+	# the model as a differentiable pytree
+	"equinox>=0.11.10",
+	# console output of scripts and the CLI
+	"rich>=13.9",
+]
+
+[project.optional-dependencies]
+# the verification harness: roadrunner as reference simulator, pandas for the
+# results, requests for the download of the SBML test suite
+testsuite = [
+	"libroadrunner>=2.7.0",
+	"pandas>=2.2",
+	"requests>=2.32",
+	"matplotlib>=3.9",
+]
+dev = [
+	"sbml2jax[testsuite]",
+	"ruff>=0.8",
+	"pre-commit>=4.0",
+	"tox>=4.23",
+	"tox-uv>=1.16",
+	"pytest>=8.3",
+	"pytest-xdist>=3.6",
+]
+
+[project.scripts]
+sbml2jax = "sbml2jax.cli:main"
+sbml2jax-testsuite = "sbml2jax.testsuite.cli:main"
+
+[project.urls]
+Repository = "https://github.com/tom-del792/smbl2jaxtest"
+
+[tool.hatch.version]
+path = "./src/sbml2jax/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sbml2jax"]
+
+[tool.uv]
+cache-keys = [{ file = "pyproject.toml" }, { file = "src/sbml2jax/__init__.py" }]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-n auto"
+markers = [
+	"testsuite: runs the SBML test suite subset, enabled with SBML2JAX_TESTSUITE=1",
+]

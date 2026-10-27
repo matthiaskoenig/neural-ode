@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "sbml2jax: differentiable JAX code for the ODE system of SBML models"
+version: 0.1.0
+license: MIT
+authors:
+  - family-names: Oberländer
+    given-names: Tom
+repository-code: "https://github.com/tom-del792/smbl2jaxtest"

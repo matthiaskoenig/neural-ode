@@ -1,0 +1,197 @@
+{
+ "00001": {
+  "stages": {
+   "jax": {
+    "message": "",
+    "status": "pass"
+   },
+   "roadrunner": {
+    "message": "",
+    "status": "pass"
+   },
+   "sbml2jax": {
+    "message": "",
+    "status": "pass"
+   }
+  },
+  "tags": [
+   "Amount"
+  ]
+ },
+ "00002": {
+  "stages": {
+   "jax": {
+    "message": "",
+    "status": "pass"
+   },
+   "roadrunner": {
+    "message": "",
+    "status": "pass"
+   },
+   "sbml2jax": {
+    "message": "",
+    "status": "pass"
+   }
+  },
+  "tags": [
+   "Amount"
+  ]
+ },
+ "00003": {
+  "stages": {
+   "jax": {
+    "message": "",
+    "status": "pass"
+   },
+   "roadrunner": {
+    "message": "",
+    "status": "pass"
+   },
+   "sbml2jax": {
+    "message": "",
+    "status": "pass"
+   }
+  },
+  "tags": [
+   "Amount",
+   "NonUnityStoichiometry"
+  ]
+ },
+ "00004": {
+  "stages": {
+   "jax": {
+    "message": "",
+    "status": "pass"
+   },
+   "roadrunner": {
+    "message": "",
+    "status": "pass"
+   },
+   "sbml2jax": {
+    "message": "",
+    "status": "pass"
+   }
+  },
+  "tags": [
+   "Amount",
+   "NonUnityStoichiometry"
+  ]
+ },
+ "00005": {
+  "stages": {
+   "jax": {
+    "message": "",
+    "status": "pass"
+   },
+   "roadrunner": {
+    "message": "",
+    "status": "pass"
+   },
+   "sbml2jax": {
+    "message": "",
+    "status": "pass"
+   }
+  },
+  "tags": [
+   "Amount"
+  ]
+ },
+ "00006": {
+  "stages": {
+   "jax": {
+    "message": "",
+    "status": "pass"
+   },
+   "roadrunner": {
+    "message": "",
+    "status": "pass"
+   },
+   "sbml2jax": {
+    "message": "",
+    "status": "pass"
+   }
+  },
+  "tags": [
+   "Amount"
+  ]
+ },
+ "00007": {
+  "stages": {
+   "jax": {
+    "message": "",
+    "status": "pass"
+   },
+   "roadrunner": {
+    "message": "",
+    "status": "pass"
+   },
+   "sbml2jax": {
+    "message": "",
+    "status": "pass"
+   }
+  },
+  "tags": [
+   "Amount",
+   "BoundaryCondition"
+  ]
+ },
+ "00008": {
+  "stages": {
+   "jax": {
+    "message": "",
+    "status": "pass"
+   },
+   "roadrunner": {
+    "message": "",
+    "status": "pass"
+   },
+   "sbml2jax": {
+    "message": "",
+    "status": "pass"
+   }
+  },
+  "tags": [
+   "Amount",
+   "BoundaryCondition"
+  ]
+ },
+ "00009": {
+  "stages": {
+   "jax": {
+    "message": "",
+    "status": "pass"
+   },
+   "roadrunner": {
+    "message": "",
+    "status": "pass"
+   },
+   "sbml2jax": {
+    "message": "",
+    "status": "pass"
+   }
+  },
+  "tags": [
+   "Amount",
+   "BoundaryCondition"
+  ]
+ },
+ "00010": {
+  "stages": {
+   "jax": {
+    "message": "",
+    "status": "pass"
+   },
+   "roadrunner": {
+    "message": "",
+    "status": "pass"
+   },
+   "sbml2jax": {
+    "message": "",
+    "status": "pass"
+   }
+  },
+  "tags": [
+   "Amount"
+  ]
+ }
+}
