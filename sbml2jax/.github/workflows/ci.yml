@@ -36,6 +36,15 @@ jobs:
         with:
           python-version: "3.13"
           enable-cache: true
+      - name: Put libpython on the library search path
+        # the extension of libroadrunner links against libpython3.X.so.1.0; the
+        # standalone interpreters of uv ship it but never load it, so without
+        # this the import of roadrunner fails (same fix as in sbml2cellml)
+        run: |
+          uv python install 3.13
+          prefix="$("$(uv python find --no-project 3.13)" -c 'import sys; print(sys.base_prefix)')"
+          echo "LD_LIBRARY_PATH=${prefix}/lib" >> "$GITHUB_ENV"
+        shell: bash
       - name: Cache the SBML test suite
         uses: actions/cache@v4
         with:

@@ -9,7 +9,7 @@ model and simulates it with diffrax. It is work package 1 of the M.Sc. thesis
 "Hybrid neural-network ODE models for PK/PD" (supervisor Matthias König): the
 mechanistic baseline into which work package 2 puts neural networks. The
 structure follows [sbml2cellml](https://github.com/matthiaskoenig/sbml2cellml).
-Python 3.13, packaged with hatchling (version in `src/sbml2jax/__init__.py`),
+Python >= 3.11 (3.11 for Colab; CI and `.python-version` use 3.13), packaged with hatchling (version in `src/sbml2jax/__init__.py`),
 environment pinned by `uv.lock`. Runtime dependencies: `python-libsbml`, `jax`,
 `diffrax`, `equinox`, `rich`; the `testsuite` extra adds `libroadrunner` (the
 reference simulator), `pandas`, `requests`, `matplotlib`.
