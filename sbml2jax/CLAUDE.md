@@ -97,9 +97,11 @@ The pipeline is `sbml.read_document` -> `analysis.analyse` -> `codegen.generate`
 
 ## Conventions
 
-- `testsuite/results.json` and `docs/testsuite.md` are generated and committed;
-  `tests/test_testsuite_full.py` fails on regressions against them, accept
-  improvements by regenerating them.
+- `testsuite/results.json` (all 1823 cases) and `docs/testsuite.md` are
+  generated and committed; `tests/test_testsuite_full.py` reruns 60 evenly
+  spread passing cases (`gate_ids`) and fails on regressions. After converter
+  changes rerun the full suite and commit the regenerated files.
+  `CaseResult.category` is pass / fail / unsupported (conversion failed) / skip.
 - Known conversion gaps are documented in `docs/conversion-issues.md`; fixing a
   gap updates the document and the results.
 - `examples/models/` holds the apixaban models (Myshkina et al. 2026,

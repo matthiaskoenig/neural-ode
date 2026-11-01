@@ -51,7 +51,7 @@ def evaluate(formula: str, t: float = 1.5) -> float:
         ("time * 2", 3.0),
         ("pi", math.pi),
         ("exponentiale", math.e),
-        ("avogadro", 6.02214076e23),
+        ("avogadro", 6.02214179e23),
         ("INF", math.inf),
     ],
 )

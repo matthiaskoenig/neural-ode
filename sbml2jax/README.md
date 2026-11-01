@@ -21,9 +21,11 @@ simulator.
   (relative 1e-5, absolute 1e-9), and the gradient of the plasma
   concentration agrees with finite differences
   (`tests/test_apixaban.py`, `examples/apixaban_example.py`).
-- **SBML test suite**: cases 1-10 are committed as the baseline
-  (`docs/testsuite.md`). In a first run over about 740 cases, 478 passed, and
-  every failure was an event or algebraic rule case, see
+- **SBML test suite** (3.5.0, all 1823 cases, `docs/testsuite.md`): 998 pass,
+  2 fail, 658 unsupported, 165 skip. Every model the converter accepts is
+  simulated correctly except two cases with a parameter named `time`, which
+  roadrunner fails as well. The unsupported cases use events, algebraic rules,
+  delays, rateOf or rate rules of stoichiometries, see
   [conversion issues](docs/conversion-issues.md).
 
 ## Installation
@@ -73,9 +75,11 @@ uv run python examples/apixaban_example.py
 
 Every case of the [SBML test suite](https://github.com/sbmlteam/sbml-test-suite)
 is simulated with roadrunner, converted, simulated with diffrax, and both
-simulations are compared with the expected results. The results are committed
-(`testsuite/results.json`), and `tests/test_testsuite_full.py` fails on
-regressions (`SBML2JAX_TESTSUITE=1`).
+simulations are compared with the expected results. The results of the full
+run are committed (`testsuite/results.json`); `tests/test_testsuite_full.py`
+reruns an evenly spread selection of 60 passing cases and fails on regressions
+(`SBML2JAX_TESTSUITE=1`, in CI). After converter changes, rerun the full suite
+and commit the regenerated results.
 
 ## License
 
