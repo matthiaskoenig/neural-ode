@@ -6,6 +6,7 @@ from pathlib import Path
 
 STAGES = ("roadrunner", "sbml2jax", "jax")
 STATUSES = ("pass", "fail", "skip")
+CATEGORIES = ("pass", "fail", "unsupported", "skip")
 
 
 @dataclass(frozen=True)
@@ -23,6 +24,13 @@ class CaseResult:
     id: str
     stages: dict[str, StageResult]
     tags: list[str] = field(default_factory=list)
+
+    @property
+    def category(self) -> str:
+        """Return `pass`, `fail` (simulation wrong), `unsupported` (conversion failed) or `skip`."""
+        if self.stages.get("sbml2jax", StageResult("skip")).status == "fail":
+            return "unsupported"
+        return self.stages.get("jax", StageResult("skip")).status
 
     @property
     def passed(self) -> bool:

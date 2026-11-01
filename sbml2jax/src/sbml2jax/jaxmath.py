@@ -19,8 +19,9 @@ from dataclasses import dataclass, field
 
 import libsbml
 
-#: value of the avogadro csymbol of SBML L3
-AVOGADRO = 6.02214076e23
+#: value of the avogadro csymbol fixed by the SBML L3 specification (CODATA 2006),
+#: not the exact SI value 6.02214076e23 of 2019 (test cases 00960, 01323)
+AVOGADRO = 6.02214179e23
 
 
 class UnsupportedError(ValueError):

@@ -84,7 +84,7 @@ def _check_supported(model: libsbml.Model) -> None:
     if model.getNumEvents():
         raise UnsupportedError("events", f"{model.getNumEvents()} events")
     for rule in model.getListOfRules():
-        if rule.isAlgebraic():
+        if rule.isAlgebraic() and rule.isSetMath():
             raise UnsupportedError("algebraic rules")
     for reaction in model.getListOfReactions():
         if reaction.isSetFast() and reaction.getFast():
@@ -104,6 +104,10 @@ class _Builder:
         self.rate_rules: dict[str, libsbml.ASTNode] = {}
         self.initial_assignments: dict[str, libsbml.ASTNode] = {}
         for rule in model.getListOfRules():
+            if not rule.isSetMath():
+                # a rule without math has no effect (SBML L3V2, section 4.11)
+                logger.warning("rule of '%s' has no math, it is ignored", rule.getVariable())
+                continue
             if rule.isAssignment():
                 self.assignment_rules[rule.getVariable()] = rule.getMath()
             elif rule.isRate():

@@ -4,9 +4,9 @@ What the current version does not convert, or converts with a loss. Each item
 raises `UnsupportedError` with the feature name, so it shows up as a failure
 reason in [the test suite report](testsuite.md).
 
-In a first run over about 740 cases of the SBML test suite (3.5.0), 478
-passed. All of the failures were cases with events (163) or algebraic rules
-(62).
+Of the 1823 cases of the SBML test suite (3.5.0), 658 are unsupported:
+events 478, algebraic rules 89, rateOf 38, delay 33, rate rules of species
+references 20. Two converted cases fail, see below.
 
 ## Not supported
 
@@ -22,8 +22,18 @@ passed. All of the failures were cases with events (163) or algebraic rules
   (initial assignments).
 - **Rate rules of species references** (stoichiometry that changes in time).
 
+## Known failures
+
+- **An SBML id `time`** (cases 01820, 01821) collides with the time column of
+  the simulation results in the test harness. roadrunner fails these cases for
+  the same reason, sbml2cellml lists the same issue.
+
 ## Behaviour to be aware of
 
+- **Elements without math** (rules, kinetic laws, initial assignments) are
+  ignored with a warning, as the SBML specification requires.
+- **The avogadro csymbol** is 6.02214179e23, the value of the SBML Level 3
+  specification, not the exact SI value of 2019.
 - **Units are not converted.** Numbers are used as they are, as in
   roadrunner.
 - **Species without an initial value** and parameters without a value are
