@@ -1,3 +1,4 @@
+# hooks of all modules; ruff picks up the .ruff.toml of each module
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.8.6

@@ -8,7 +8,7 @@ model is an [equinox](https://github.com/patrick-kidger/equinox) module, so
 neural networks can be added to its right-hand side (hybrid models,
 universal differential equations).
 
-It is work package 1 of the M.Sc. thesis *Hybrid neural-network ODE models for
+It is the first module of [neural-ode](../README.md) and work package 1 of the M.Sc. thesis *Hybrid neural-network ODE models for
 PK/PD* (supervisor Matthias König), with the structure of
 [sbml2cellml](https://github.com/matthiaskoenig/sbml2cellml).
 [libRoadRunner](https://github.com/sys-bio/roadrunner) is the reference
@@ -32,7 +32,7 @@ simulator.
 
 ```bash
 uv sync --extra dev           # development, from uv.lock
-pip install "sbml2jax[testsuite] @ git+https://github.com/tom-del792/smbl2jaxtest.git"   # e.g. in Colab
+pip install "sbml2jax[testsuite] @ git+https://github.com/matthiaskoenig/neural-ode.git#subdirectory=sbml2jax"   # e.g. in Colab
 ```
 
 ## Usage

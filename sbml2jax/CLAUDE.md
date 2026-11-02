@@ -14,6 +14,14 @@ environment pinned by `uv.lock`. Runtime dependencies: `python-libsbml`, `jax`,
 `diffrax`, `equinox`, `rich`; the `testsuite` extra adds `libroadrunner` (the
 reference simulator), `pandas`, `requests`, `matplotlib`.
 
+## Repository
+
+`sbml2jax` is a module of the monorepo `matthiaskoenig/neural-ode`; this
+directory is a self-contained package (own `pyproject.toml`, `uv.lock`, tests).
+Run all commands below from `sbml2jax/`. CI: `.github/workflows/sbml2jax.yml`
+at the repository root (`working-directory: sbml2jax`, runs only on changes
+under `sbml2jax/`); pre-commit: `.pre-commit-config.yaml` at the root.
+
 ## Commands
 
 ```bash
