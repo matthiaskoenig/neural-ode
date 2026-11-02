@@ -1,15 +1,21 @@
-name: CI
+name: sbml2jax
 
+# only changes of the sbml2jax module (or of this workflow) run its checks
 on:
   push:
     branches: [develop, main]
-    tags: ['*']
+    paths: ["sbml2jax/**", ".github/workflows/sbml2jax.yml"]
   pull_request:
     branches: [develop, main]
+    paths: ["sbml2jax/**", ".github/workflows/sbml2jax.yml"]
   workflow_dispatch:
 
 permissions:
   contents: read
+
+defaults:
+  run:
+    working-directory: sbml2jax
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -36,6 +42,7 @@ jobs:
         with:
           python-version: "3.13"
           enable-cache: true
+          cache-dependency-glob: sbml2jax/uv.lock
       - name: Put libpython on the library search path
         # the extension of libroadrunner links against libpython3.X.so.1.0; the
         # standalone interpreters of uv ship it but never load it, so without

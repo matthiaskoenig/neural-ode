@@ -61,7 +61,7 @@ sbml2jax = "sbml2jax.cli:main"
 sbml2jax-testsuite = "sbml2jax.testsuite.cli:main"
 
 [project.urls]
-Repository = "https://github.com/tom-del792/smbl2jaxtest"
+Repository = "https://github.com/matthiaskoenig/neural-ode/tree/main/sbml2jax"
 
 [tool.hatch.version]
 path = "./src/sbml2jax/__init__.py"

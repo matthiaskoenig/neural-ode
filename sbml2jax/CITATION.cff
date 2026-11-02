@@ -6,4 +6,4 @@ license: MIT
 authors:
   - family-names: Oberländer
     given-names: Tom
-repository-code: "https://github.com/tom-del792/smbl2jaxtest"
+repository-code: "https://github.com/matthiaskoenig/neural-ode"
