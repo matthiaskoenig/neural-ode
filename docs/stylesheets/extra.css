@@ -1,0 +1,18 @@
+/* display math which is wider than the page scrolls instead of overflowing */
+.md-typeset .arithmatex mjx-container[display="true"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
+
+/* figures of the examples: on a white sheet, so that they read in the dark scheme */
+.md-typeset img[src$=".png"] {
+  background-color: #fff;
+  border-radius: 0.2rem;
+}
+
+/* the ids of a model stay on one line in tables, the table scrolls on a small screen */
+.md-typeset table:not([class]) code {
+  white-space: nowrap;
+  word-break: normal;
+}
