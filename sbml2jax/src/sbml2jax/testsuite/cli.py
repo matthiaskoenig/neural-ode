@@ -20,7 +20,9 @@ REPORT = Path("docs/testsuite.md")
 
 def main(argv: list[str] | None = None) -> int:
     """Run the command line."""
-    parser = argparse.ArgumentParser(prog="sbml2jax-testsuite", description=__doc__)
+    parser = argparse.ArgumentParser(
+        prog="sbml2jax-testsuite", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
     sub = parser.add_subparsers(dest="command", required=True)
     run = sub.add_parser("run", help="run cases and write results and report")
     run.add_argument("ids", nargs="*", help="case ids, all by default")

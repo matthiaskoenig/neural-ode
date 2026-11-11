@@ -1,6 +1,6 @@
 """Reading and preparing SBML models with libsbml.
 
-`read_model` reads an SBML file, flattens hierarchical models (comp package)
+`read_document` reads an SBML file, flattens hierarchical models (comp package)
 and expands the calls of function definitions, so the converter only sees
 core SBML formulas without user functions.
 """

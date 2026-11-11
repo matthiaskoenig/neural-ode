@@ -1,0 +1,79 @@
+name: docs
+
+# builds the documentation (zensical.toml, docs/) on every change of it or of the
+# sources it shows, and publishes it to GitHub Pages from main
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "zensical.toml"
+      - "pyproject.toml"
+      - "uv.lock"
+      - "sbml2jax/src/**"
+      - "sbml2jax/docs/**"
+      - "sbml2jax/examples/**"
+      - ".github/workflows/docs.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "zensical.toml"
+      - "pyproject.toml"
+      - "uv.lock"
+      - "sbml2jax/src/**"
+      - "sbml2jax/docs/**"
+      - "sbml2jax/examples/**"
+      - ".github/workflows/docs.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  # a newer run supersedes the running one; a cancelled deployment leaves the
+  # published site as it was
+  cancel-in-progress: true
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - name: Install zensical and mkdocstrings from uv.lock
+        run: uv sync --locked
+      - name: Check that the generated module on the Generated module page is current
+        # regenerates docs/examples/absorption.py with the current converter; a
+        # change of the converter has to come with the regenerated file
+        run: |
+          uv run --directory sbml2jax --frozen sbml2jax ../docs/examples/absorption.xml -o ../docs/examples/absorption.py
+          git diff --exit-code docs/examples/absorption.py
+      - name: Build the documentation
+        # --strict turns a broken link or a missing included file into a failure
+        run: uv run zensical build --clean --strict
+      - name: Upload the site
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: docs
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write     # deploy to GitHub Pages
+      id-token: write  # verify that the deployment comes from this workflow
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

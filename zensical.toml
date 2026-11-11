@@ -1,0 +1,162 @@
+# The documentation of the monorepo, built with zensical from `docs/`:
+#
+#   uv run zensical serve              # live preview on http://localhost:8000
+#   uv run zensical build --strict     # the site in `site/`, a broken link fails
+#
+# Published to GitHub Pages by `.github/workflows/docs.yml`.
+
+[project]
+site_name = "Hybrid PK/PD"
+site_url = "https://matthiaskoenig.github.io/neural-ode/"
+site_description = "Hybrid neural-network ODE models for PK/PD in JAX: sbml2jax, hybrid models of the apixaban PBPK/PD model and their export in PEtab SciML"
+site_author = "Tom Oberländer"
+
+copyright = "Copyright &copy; 2026 Tom Oberländer"
+
+repo_url = "https://github.com/matthiaskoenig/neural-ode"
+repo_name = "matthiaskoenig/neural-ode"
+edit_uri = "edit/main/docs/"
+
+# math (`$...$`, `$$...$$`) is typeset by MathJax, see `pymdownx.arithmatex`
+extra_javascript = [
+  "javascripts/mathjax.js",
+  "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js",
+]
+extra_css = ["stylesheets/extra.css"]
+
+nav = [
+  { "Home" = "index.md" },
+  { "Roadmap" = "roadmap.md" },
+  { "Installation" = "installation.md" },
+  { "sbml2jax" = [
+    "sbml2jax/index.md",
+    { "Conversion" = "sbml2jax/conversion.md" },
+    { "Generated module" = "sbml2jax/generated-module.md" },
+    { "Simulation" = "sbml2jax/simulation.md" },
+    { "Command line" = "sbml2jax/cli.md" },
+    { "SBML test suite" = "sbml2jax/testsuite.md" },
+    { "Apixaban model" = "sbml2jax/apixaban.md" },
+    { "Conversion issues" = "sbml2jax/conversion-issues.md" },
+  ] },
+  { "Hybrid models" = [
+    "hybrid/index.md",
+  ] },
+  { "API reference" = [
+    "api/index.md",
+    { "sbml2jax.model" = "api/model.md" },
+    { "sbml2jax.convert" = "api/convert.md" },
+    { "sbml2jax.sbml" = "api/sbml.md" },
+    { "sbml2jax.analysis" = "api/analysis.md" },
+    { "sbml2jax.jaxmath" = "api/jaxmath.md" },
+    { "sbml2jax.codegen" = "api/codegen.md" },
+    { "sbml2jax.variables" = "api/variables.md" },
+    { "sbml2jax.cli" = "api/cli.md" },
+    { "sbml2jax.testsuite" = "api/testsuite.md" },
+  ] },
+  { "References" = "references.md" },
+  { "Contributing" = "development.md" },
+]
+
+[project.theme]
+language = "en"
+features = [
+  "content.action.edit",
+  "content.code.annotate",
+  "content.code.copy",
+  "content.tooltips",
+  "navigation.footer",
+  "navigation.indexes",
+  "navigation.instant",
+  "navigation.instant.prefetch",
+  "navigation.sections",
+  "navigation.top",
+  "navigation.tracking",
+  "search.highlight",
+  "search.suggest",
+  "toc.follow",
+]
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Switch to light mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "indigo"
+accent = "indigo"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "indigo"
+accent = "indigo"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to system preference"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/matthiaskoenig/neural-ode"
+
+# API reference is rendered from the docstrings, see the `docs/api` pages; griffe
+# reads the sources statically, the package does not have to be installed
+[project.plugins.mkdocstrings]
+default_handler = "python"
+
+[project.plugins.mkdocstrings.handlers.python]
+paths = ["sbml2jax/src"]
+
+[project.plugins.mkdocstrings.handlers.python.options]
+docstring_style = "google"
+docstring_section_style = "table"
+show_source = true
+# the page provides the heading, see the `docs/api` pages
+show_root_heading = false
+show_root_toc_entry = false
+show_root_full_path = false
+show_symbol_type_heading = true
+show_symbol_type_toc = true
+members_order = "source"
+separate_signature = true
+signature_crossrefs = true
+merge_init_into_class = true
+filters = ["!^_"]
+
+[project.markdown_extensions]
+abbr = {}
+admonition = {}
+attr_list = {}
+def_list = {}
+footnotes = {}
+md_in_html = {}
+tables = {}
+toc.permalink = true
+pymdownx.arithmatex.generic = true
+pymdownx.betterem = {}
+pymdownx.caret = {}
+pymdownx.details = {}
+pymdownx.emoji.emoji_generator = "zensical.extensions.emoji.to_svg"
+pymdownx.emoji.emoji_index = "zensical.extensions.emoji.twemoji"
+pymdownx.highlight.anchor_linenums = true
+pymdownx.highlight.line_spans = "__span"
+pymdownx.highlight.pygments_lang_class = true
+pymdownx.inlinehilite = {}
+pymdownx.keys = {}
+pymdownx.magiclink = {}
+pymdownx.mark = {}
+pymdownx.smartsymbols = {}
+# `--8<-- "sbml2jax/docs/testsuite.md"` includes a file of the repository (paths
+# from its root), so the generated reports and the examples are shown as they
+# are committed; a missing file fails the build
+pymdownx.snippets.base_path = ["."]
+pymdownx.snippets.check_paths = true
+# ```mermaid blocks are drawn as diagrams
+pymdownx.superfences.custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
+pymdownx.tabbed.alternate_style = true
+pymdownx.tasklist.custom_checkbox = true
+pymdownx.tilde = {}

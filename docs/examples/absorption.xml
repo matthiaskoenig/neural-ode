@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version2/core" level="3" version="2">
+  <model id="absorption" timeUnits="dimensionless">
+    <listOfCompartments>
+      <compartment id="Vplasma" size="5" constant="true"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="Agut" compartment="Vplasma" initialAmount="10" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="C" compartment="Vplasma" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="ka" value="0.02" constant="true"/>
+      <parameter id="CL" value="0.1" constant="true"/>
+      <parameter id="Emax" value="1" constant="true"/>
+      <parameter id="EC50" value="0.5" constant="true"/>
+      <parameter id="E" constant="false"/>
+    </listOfParameters>
+    <listOfRules>
+      <assignmentRule variable="E">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> Emax </ci>
+              <ci> C </ci>
+            </apply>
+            <apply>
+              <plus/>
+              <ci> C </ci>
+              <ci> EC50 </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+    </listOfRules>
+    <listOfReactions>
+      <reaction id="absorption_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Agut" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="C" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> ka </ci>
+              <ci> Agut </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="elimination" reversible="false">
+        <listOfReactants>
+          <speciesReference species="C" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> CL </ci>
+              <ci> C </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>
